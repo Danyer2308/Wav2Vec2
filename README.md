@@ -93,36 +93,4 @@ python main.py
 
 ---
 
-## ✨ Post-procesador de texto
-
-Archivo: `postprocesador.py`
-
-```python
-import re
-
-def limpiar_transcripcion(texto: str) -> str:
-    texto = re.sub(r"\s+", " ", texto.strip())
-    if len(texto) > 0:
-        texto = texto[0].upper() + texto[1:]
-    if not texto.endswith((".", "!", "?")):
-        texto += "."
-    palabras = texto.split()
-    resultado = []
-    for i, palabra in enumerate(palabras, 1):
-        resultado.append(palabra)
-        if i % 12 == 0 and i != len(palabras):
-            resultado.append(",")
-    return " ".join(resultado)
-```
-
-Integración en `transcriptor.py`:
-
-```python
-from postprocesador import limpiar_transcripcion
-
-texto_limpio = limpiar_transcripcion(result["text"])
-```
-
----
-
 ✅ Con esto tienes un sistema completo de **grabación + transcripción + limpieza automática** en español.  
